@@ -3,23 +3,58 @@ using MyMath;
 
 class Program {
     static void Main(string[] args) {
-        // Testing task 1
-        //task1();
+        int number = 1;
 
-        // Testing task 2
-        //task2();
+        while (number != 0) {
+            Console.Write("Input task number [1-6], [0] to exit: ");
 
-        // Testing task 3
-        //task3();
+            try {
+                string? input = Console.ReadLine();
 
-        // Testing task 4
-       // task4();
+                if (input != null) {
+                    number = int.Parse(input);
 
-        // Testing task 5
-        //task5();
+                    switch (number) {   
+                        case 0:
+                            return;
 
-        // Testing task 6
-        task6();
+                        case 1:
+                            task1(); // Testing task 1
+                            break;
+
+                        case 2:
+                            task2(); // Testing task 2
+                            break;
+
+                        case 3:
+                            task3(); // Testing task 3
+                            break;
+
+                        case 4:
+                            task4(); // Testing task 4
+                            break;
+
+                        case 5:
+                            task5(); // Testing task 5
+                            break;
+
+                        case 6:
+                            task6(); // Testing task 6
+                            break;
+
+                        default:
+                            break;
+                    } 
+                } else {
+                    Console.WriteLine("Nothing provided. Exiting...");
+                }
+            } catch (Exception ex) {
+                Console.WriteLine(ex.ToString());
+            }
+
+            Console.WriteLine();
+        }
+
     }
 
     // Task 1 test (Calculates square by providing perimeter)
