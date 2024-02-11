@@ -82,5 +82,16 @@ namespace MyMath {
         public static int sum(int a, int b) {
             return a + b;
         }
+
+
+        /// <summary>
+        /// Calculates some function value.
+        /// </summary>
+        /// <param name="a">The first value.</param>
+        /// <param name="b">The second value.</param>
+        /// <returns>Value of the " a + (a + b - 1) / (a * a + 1) - a * b" function .</returns>
+        public static double someFunction(double a, double b) { 
+            return a + (a + b - 1) / (a * a + 1) - a * b;
+        }
     }
 }
