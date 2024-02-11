@@ -4,16 +4,19 @@ using MyMath;
 class Program {
     static void Main(string[] args) {
         // Testing task 1
-       // task1();
+        //task1();
 
         // Testing task 2
-       // task2();
+        //task2();
 
         // Testing task 3
-       // task3();
+        //task3();
 
         // Testing task 4
-        task4();
+        //task4();
+
+        // Testing task 5
+        task5();
     }
 
     // Task 1 test (Calculates square by providing perimeter)
@@ -131,8 +134,9 @@ class Program {
 
                 // If circle == 1
                 Console.WriteLine("Point inside of the shape!");
-            }
-
+            } else {
+                Console.WriteLine("Nothing provided. Exiting...");
+            };
         } catch (Exception ex) {
             Console.WriteLine(ex.ToString());
         }
@@ -140,7 +144,7 @@ class Program {
         Console.WriteLine();
     }
 
-    // Task 4 test (Outputs remaing monht count to the end of year)
+    // Task 4 test (Outputs remaining month count to the end of year)
     private static void task4() {
         Console.WriteLine("|===~        Testing task 4.1        ~===|");
         Console.Write("Enter current month number: ");
@@ -156,11 +160,54 @@ class Program {
                     return;
                 }
                 Console.WriteLine($"To the end of year {remained} months remained");
-            }
+            } else {
+                Console.WriteLine("Nothing provided. Exiting...");
+            };
         } catch (Exception ex) {
             Console.WriteLine(ex.ToString());
         }
 
         Console.WriteLine();
     }
+
+    private static void task5() {
+        Console.WriteLine("|===~        Testing task 5.1        ~===|");
+
+        try {
+            Console.Write("Enter two integer numbers: ");
+
+            int a, b; // User point coordinate
+            string? input = Console.ReadLine();
+
+            if (input != null) {
+                // Reading data
+                // Replacing commas with periods to ensure correct parsing
+                input = input.Replace('.', ',');
+
+                string[] values = input.Split(' ');
+                values = values.Where(val => !string.IsNullOrWhiteSpace(val)).ToArray(); // Removing redundant white spaces
+
+                // Ensuring that exactly two values are provided
+                if (values.Length != 2) {
+                    Console.WriteLine("Invalid input. Please provide two comma-separated values.");
+                    return;
+                }
+
+                // Parsing the x and y coordinates
+                if (!int.TryParse(values[0], out a) || !int.TryParse(values[1], out b)) {
+                    Console.WriteLine("Invalid input. Please provide valid integer values ");
+                    return;
+                }
+
+                Console.WriteLine($"Sum of two values is: {MyMath.Calculation.sum(a, b)}");
+            } else {
+                Console.WriteLine("Nothing provided. Exiting...");
+            };
+        } catch (Exception ex) {
+            Console.WriteLine(ex.ToString());
+        }
+
+        Console.WriteLine();
+    }
+
 }
