@@ -1,6 +1,6 @@
 ﻿using System;
 using MyMath;
-using System.Globalization; // Used for '.' as delimeter in floating-point operations
+using System.Globalization; // Used for '.' as delimiter in floating-point operations
 class Program {
     static void Main(string[] args) {
         // Testing task 1
@@ -13,11 +13,11 @@ class Program {
         Console.Write("Enter perimeter to calculate square: ");
 
         try {
-            string line = Console.ReadLine();
+            string? line = Console.ReadLine();
             if (line != null) {
                 double p = double.Parse(line, CultureInfo.InvariantCulture);
 
-                double square = MyMath.Calculation.square(p);
+                double square = MyMath.Calculation.Square(p);
                 Console.WriteLine("Calculated square: " + square.ToString(".000"));
             }
         } catch (Exception ex) {
