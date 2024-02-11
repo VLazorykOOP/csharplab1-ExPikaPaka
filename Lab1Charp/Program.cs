@@ -4,13 +4,16 @@ using MyMath;
 class Program {
     static void Main(string[] args) {
         // Testing task 1
-        //task1();
+       // task1();
 
         // Testing task 2
-        //task2();
+       // task2();
 
         // Testing task 3
-        task3();
+       // task3();
+
+        // Testing task 4
+        task4();
     }
 
     // Task 1 test (Calculates square by providing perimeter)
@@ -99,9 +102,7 @@ class Program {
                     return;
                 }
 
-                Console.WriteLine($"Entered point coordinates: [{x}, {y}]");
-
-
+          
 
                 // Calculating point relation with shape
                 int line = MyMath.Calculation.CheckPointLine(x, y); 
@@ -132,6 +133,30 @@ class Program {
                 Console.WriteLine("Point inside of the shape!");
             }
 
+        } catch (Exception ex) {
+            Console.WriteLine(ex.ToString());
+        }
+
+        Console.WriteLine();
+    }
+
+    // Task 4 test (Outputs remaing monht count to the end of year)
+    private static void task4() {
+        Console.WriteLine("|===~        Testing task 4.1        ~===|");
+        Console.Write("Enter current month number: ");
+
+        try {
+            string? line = Console.ReadLine();
+            if (line != null) {
+                int num = int.Parse(line);
+                int remained = 12 - num;
+
+                if (remained < 1 || remained > 12) { 
+                    Console.WriteLine("Wrong month specified! Number must be in [1-12] range");
+                    return;
+                }
+                Console.WriteLine($"To the end of year {remained} months remained");
+            }
         } catch (Exception ex) {
             Console.WriteLine(ex.ToString());
         }
