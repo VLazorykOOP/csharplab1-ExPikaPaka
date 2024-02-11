@@ -72,5 +72,15 @@ namespace MyMath {
                 return -1; // Point lies outside the circle
             }
         }
+
+        /// <summary>
+        /// Calculates the sum of two integers.
+        /// </summary>
+        /// <param name="a">The first integer.</param>
+        /// <param name="b">The second integer.</param>
+        /// <returns>The sum of the two integers.</returns>
+        public static int sum(int a, int b) {
+            return a + b;
+        }
     }
 }
