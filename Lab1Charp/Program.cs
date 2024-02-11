@@ -13,10 +13,13 @@ class Program {
         //task3();
 
         // Testing task 4
-        //task4();
+       // task4();
 
         // Testing task 5
-        task5();
+        //task5();
+
+        // Testing task 6
+        task6();
     }
 
     // Task 1 test (Calculates square by providing perimeter)
@@ -170,6 +173,7 @@ class Program {
         Console.WriteLine();
     }
 
+    // Task 5 test (Sum of two values)
     private static void task5() {
         Console.WriteLine("|===~        Testing task 5.1        ~===|");
 
@@ -193,13 +197,54 @@ class Program {
                     return;
                 }
 
-                // Parsing the x and y coordinates
+                // Parsing the a and b coordinates
                 if (!int.TryParse(values[0], out a) || !int.TryParse(values[1], out b)) {
                     Console.WriteLine("Invalid input. Please provide valid integer values ");
                     return;
                 }
 
                 Console.WriteLine($"Sum of two values is: {MyMath.Calculation.sum(a, b)}");
+            } else {
+                Console.WriteLine("Nothing provided. Exiting...");
+            };
+        } catch (Exception ex) {
+            Console.WriteLine(ex.ToString());
+        }
+
+        Console.WriteLine();
+    }
+
+    // Task 6 test (Calculates value of some function)
+    private static void task6() {
+        Console.WriteLine("|===~        Testing task 6.1        ~===|");
+
+        try {
+            Console.Write("Enter two real numbers: ");
+
+            double a, b; // User point coordinate
+            string? input = Console.ReadLine();
+
+            if (input != null) {
+                // Reading data
+                // Replacing commas with periods to ensure correct parsing
+                input = input.Replace('.', ',');
+
+                string[] values = input.Split(' ');
+                values = values.Where(val => !string.IsNullOrWhiteSpace(val)).ToArray(); // Removing redundant white spaces
+
+                // Ensuring that exactly two values are provided
+                if (values.Length != 2) {
+                    Console.WriteLine("Invalid input. Please provide two comma-separated values.");
+                    return;
+                }
+
+                // Parsing the a and b coordinates
+                if (!double.TryParse(values[0], out a) || !double.TryParse(values[1], out b)) {
+                    Console.WriteLine("Invalid input. Please provide valid values ");
+                    return;
+                }
+
+                Console.WriteLine($"Function value is: {MyMath.Calculation.someFunction(a, b)}");
             } else {
                 Console.WriteLine("Nothing provided. Exiting...");
             };
