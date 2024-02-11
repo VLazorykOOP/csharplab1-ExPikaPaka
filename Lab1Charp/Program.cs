@@ -1,13 +1,16 @@
 ﻿using System;
 using MyMath;
-using System.Globalization; // Used for '.' as delimiter in floating-point operations
+
 class Program {
     static void Main(string[] args) {
         // Testing task 1
-        task1();
+        //task1();
 
         // Testing task 2
-        task2();
+        //task2();
+
+        // Testing task 3
+        task3();
     }
 
     // Task 1 test (Calculates square by providing perimeter)
@@ -18,7 +21,8 @@ class Program {
         try {
             string? line = Console.ReadLine();
             if (line != null) {
-                double p = double.Parse(line, CultureInfo.InvariantCulture);
+                line = line.Replace('.', ',');
+                double p = double.Parse(line);
 
                 double square = MyMath.Calculation.Square(p);
                 Console.WriteLine("Calculated square: " + square.ToString(".000"));
@@ -40,7 +44,8 @@ class Program {
             Console.Write("Enter value a: ");
             string? line = Console.ReadLine();
             if (line != null) {
-                a = double.Parse(line, CultureInfo.InvariantCulture);
+                line = line.Replace('.', ',');
+                a = double.Parse(line);
             } else {
                 throw new Exception("Couldn't read value a!");
             }
@@ -48,12 +53,85 @@ class Program {
             Console.Write("Enter value b: ");
             line = Console.ReadLine();
             if (line != null) {
-                b = double.Parse(line, CultureInfo.InvariantCulture);
+                line = line.Replace('.', ',');
+                b = double.Parse(line);
             } else {
                 throw new Exception("Couldn't read value b!");
             }
 
             Console.WriteLine("Max value: " + Calculation.Max(a, b));
+        } catch (Exception ex) {
+            Console.WriteLine(ex.ToString());
+        }
+
+        Console.WriteLine();
+    }
+
+    // Task 3 test (Define point relation to a shape)
+    private static void task3() {
+        Console.WriteLine("|===~        Testing task 3.1        ~===|");
+
+        try {
+            Console.Write("Enter point coordinate [x, y]: ");
+
+            double x, y; // User point coordinate
+            double radius = 12; // Circle radius
+
+            string? input = Console.ReadLine();
+
+            if (input != null) {
+                // Reading data
+                // Replacing commas with periods to ensure correct parsing
+                input = input.Replace('.', ',');
+
+                string[] coordinates = input.Split(' ');
+                coordinates = coordinates.Where(val => !string.IsNullOrWhiteSpace(val)).ToArray(); // Removing redundant white spaces
+
+                // Ensuring that exactly two values are provided
+                if (coordinates.Length != 2) {
+                    Console.WriteLine("Invalid input. Please provide two comma-separated values for x and y coordinates.");
+                    return;
+                }
+
+                // Parsing the x and y coordinates
+                if (!double.TryParse(coordinates[0], out x) || !double.TryParse(coordinates[1], out y)) {
+                    Console.WriteLine("Invalid input. Please provide valid numeric values for x and y coordinates.");
+                    return;
+                }
+
+                Console.WriteLine($"Entered point coordinates: [{x}, {y}]");
+
+
+
+                // Calculating point relation with shape
+                int line = MyMath.Calculation.CheckPointLine(x, y); 
+
+                if(line == -1) {
+                    Console.WriteLine("Point outside of the shape!");
+                    return;
+                }
+                if (line == 0) {
+                    Console.WriteLine("Point on the border!");
+                    return;
+                }
+
+
+                // If line == 1
+                int circle = MyMath.Calculation.CheckPointInCircle(x, y, radius);
+
+                if (circle == -1) {
+                    Console.WriteLine("Point outside of the shape!");
+                    return;
+                }
+                if (circle == 0) {
+                    Console.WriteLine("Point on the border!");
+                    return;
+                }
+
+                // If circle == 1
+                Console.WriteLine("Point inside of the shape!");
+            }
+
         } catch (Exception ex) {
             Console.WriteLine(ex.ToString());
         }
